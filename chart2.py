@@ -87,6 +87,7 @@ for line in chart:
             worths.append(-2)
     last_price = price
 
+value_list = [list(x) for x in values]
 
 trade(values)
 
@@ -125,7 +126,7 @@ markers = []
 #         wsells.append(i)
 
 last_worth = 0
-look_range = 5
+look_range = 10 # +++ ADD: look range in time
 max_index = 0
 min_index = 0
 last_bought = True
@@ -144,6 +145,8 @@ for i, (date, worth) in enumerate( zip(dX, worths) ):
             if values[i][-1] <= values[wbuys[-1]][-1]:
                 del wbuys[-1]
                 del buy_dates[-1]
+            else:
+                continue
         buy_dates.append( date )
         wbuys.append(i)
         last_bought = True
@@ -153,6 +156,8 @@ for i, (date, worth) in enumerate( zip(dX, worths) ):
             if values[i][-1] >= values[wsells[-1]][-1]:
                 del wsells[-1]
                 del sell_dates[-1]
+            else:
+                continue
         sell_dates.append( date )
         wsells.append(i)
         last_bought = False
